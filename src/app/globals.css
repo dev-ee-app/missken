@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 30% 98%;
+    --foreground: 260 50% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 260 50% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 50% 12%;
+
+    --primary: 252 54% 36%; /* #3B2A8C */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 283 57% 49%; /* #9B35C4 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 260 20% 94%;
+    --muted-foreground: 260 15% 45%;
+
+    --accent: 256 75% 79%; /* #B9A3F0 */
+    --accent-foreground: 260 50% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 260 25% 90%;
+    --input: 260 25% 90%;
+    --ring: 252 54% 36%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 260 45% 6%;
+    --foreground: 260 15% 95%;
+
+    --card: 260 40% 10%;
+    --card-foreground: 260 15% 95%;
+
+    --popover: 260 40% 10%;
+    --popover-foreground: 260 15% 95%;
+
+    --primary: 252 54% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 283 57% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 260 30% 15%;
+    --muted-foreground: 260 15% 65%;
+
+    --accent: 256 75% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 260 30% 18%;
+    --input: 260 30% 18%;
+    --ring: 252 54% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Noto Sans Arabic", sans-serif;
+  }
+}
+
+/* Glassmorphism styling */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(185, 163, 240, 0.25);
+}
+
+.dark .glass-panel {
+  background: rgba(18, 12, 35, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(185, 163, 240, 0.15);
+}
+
+/* Print and Page exact-size styling */
+.sheet-page {
+  box-sizing: border-box;
+  background-color: white;
+  color: #1a1a1a;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+}
+
+/* Strict Clean Print Media CSS */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0mm;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide entire application navigation and page chrome */
+  aside,
+  header,
+  nav,
+  .no-print,
+  button,
+  input[type="checkbox"],
+  .glass-panel {
+    display: none !important;
+  }
+
+  /* Display only the printable sheets container */
+  #printable-sheet {
+    display: block !important;
+    width: 210mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    background: transparent !important;
+  }
+
+  .sheet-page {
+    margin: 0 !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
